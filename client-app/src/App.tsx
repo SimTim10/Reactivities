@@ -1,5 +1,4 @@
 import React , {Component} from 'react';
-import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
 import { Header, HeaderContent, Icon, List, ListItem } from 'semantic-ui-react';

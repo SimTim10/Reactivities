@@ -16,6 +16,7 @@ builder.Services.AddCors(opt => {
     }); 
 });
 
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -35,6 +36,7 @@ using (var scope = app.Services.CreateScope())
     {
         var context = service.GetRequiredService<DataContext>();
         context.Database.Migrate();
+        Seed.SeedData(context);
     }
     catch(Exception ex)
     {
