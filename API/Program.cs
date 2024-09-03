@@ -21,6 +21,9 @@ builder.Services.AddMediatR(typeof(List.Handler).Assembly);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.ConfigureSwaggerGen(opt =>{
+    opt.CustomSchemaIds(x => x.FullName?.Replace('+','-'));
+});
 
 var app = builder.Build();
 
