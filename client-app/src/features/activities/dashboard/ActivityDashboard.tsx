@@ -7,7 +7,7 @@ import ActivityForm from "../form/ActivityForm";
 
 interface IProps {
   activities: IActivity[];
-  selectActivity: (id: string) => void;
+  onSelectActivity: (id: string) => void;
   activity: IActivity | null;
   editMode: boolean;
   setEditMode: (editMode: boolean) => void;
@@ -17,7 +17,7 @@ const ActivityDashboard: React.FC<IProps> = ({
   activities,
   activity,
   editMode,
-  selectActivity: SelectActivity,
+  onSelectActivity: SelectActivity,
   setEditMode,
   setSelectedActivity,
 }) => {
@@ -37,7 +37,7 @@ const ActivityDashboard: React.FC<IProps> = ({
             setSelectedActivity={setSelectedActivity}
           />
         )}
-        {editMode && <ActivityForm setEditMode={setEditMode} />}
+        {editMode && <ActivityForm activity={activity} setEditMode={setEditMode} />}
       </Grid.Column>
     </Grid>
   );

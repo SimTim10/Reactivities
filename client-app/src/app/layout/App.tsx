@@ -12,7 +12,7 @@ const App = () => {
   );
   const [editMode, setEditMode] = useState(false);
 
-  const handleSelectActivity = (id: string) => {
+  const handleOnSelectActivity = (id: string) => {
     setSelectedActivity(activities.filter((a) => a.id === id)[0]);
   };
 
@@ -30,7 +30,7 @@ const App = () => {
       <Container style={{ marginTop: "11em" }}>
         <ActivityDashboard
           activities={activities}
-          selectActivity={handleSelectActivity}
+          onSelectActivity={handleOnSelectActivity}
           activity={selectedActivity}
           editMode={editMode}
           setEditMode={setEditMode}
