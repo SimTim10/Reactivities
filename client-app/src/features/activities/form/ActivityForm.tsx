@@ -1,19 +1,29 @@
-import React from 'react'
-import { Form, Segment } from 'semantic-ui-react'
+import React from "react";
+import { Button, Form, Segment } from "semantic-ui-react";
 
-const ActivityForm = () => {
-  return (
-    <Segment>
-        <Form>
-            <Form.Input placeholder = 'title'/>
-            <Form.TextArea rows={2} placeholder = 'Description'/>
-            <Form.Input placeholder = 'Category'/>
-            <Form.Input type='date' placeholder = 'Date'/>
-            <Form.Input placeholder = 'City'/>
-            <Form.Input placeholder = 'Venue'/>
-        </Form>
-    </Segment>
-  )
+interface IProps {
+  setEditMode: (editMode: boolean) => void;
 }
 
-export default ActivityForm
+const ActivityForm: React.FC<IProps> = ({ setEditMode }) => {
+  return (
+    <Segment clearing>
+      <Form>
+        <Form.Input placeholder="title" />
+        <Form.TextArea rows={2} placeholder="Description" />
+        <Form.Input placeholder="Category" />
+        <Form.Input type="date" placeholder="Date" />
+        <Form.Input placeholder="City" />
+        <Form.Input placeholder="Venue" />
+        <Button floated="right" type="submit" color="green" content="Edit" />
+        <Button
+          onClick={() => setEditMode(false)}
+          floated="right"
+          content="Cancel"
+        />
+      </Form>
+    </Segment>
+  );
+};
+
+export default ActivityForm;

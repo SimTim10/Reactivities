@@ -10,7 +10,7 @@ const App = () => {
   const [selectedActivity, setSelectedActivity] = useState<IActivity | null>(
     null
   );
-  const [editMode,setEditMode] = useState(false);
+  const [editMode, setEditMode] = useState(false);
 
   const handleSelectActivity = (id: string) => {
     setSelectedActivity(activities.filter((a) => a.id === id)[0]);
@@ -26,14 +26,15 @@ const App = () => {
 
   return (
     <Fragment>
-      <NavBar />
+      <NavBar setEditMode={setEditMode} />
       <Container style={{ marginTop: "11em" }}>
         <ActivityDashboard
           activities={activities}
-          SelectActivity={handleSelectActivity}
+          selectActivity={handleSelectActivity}
           activity={selectedActivity}
-          editMode = {editMode}
-          setEditMode = {setEditMode}
+          editMode={editMode}
+          setEditMode={setEditMode}
+          setSelectedActivity={setSelectedActivity}
         ></ActivityDashboard>
       </Container>
     </Fragment>
