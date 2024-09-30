@@ -28,14 +28,14 @@ const ActivityForm: React.FC<IProps> = ({ activity, setEditMode }) => {
     console.log(activityOnFormInitiate);
   };
   const handleOnChangeInput = (
-    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    event: FormEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = event.currentTarget;
     setActivityOnFormInitiate({ ...activityOnFormInitiate, [name]: value });
   };
   return (
     <Segment clearing>
-      <Form>
+      <Form onSubmit={() => handleOnSubmitForm()}>
         <Form.Input
           onChange={handleOnChangeInput}
           name="title"
@@ -74,13 +74,7 @@ const ActivityForm: React.FC<IProps> = ({ activity, setEditMode }) => {
           placeholder="Venue"
           value={activityOnFormInitiate?.venue}
         />
-        <Button
-          onClick={() => handleOnSubmitForm()}
-          floated="right"
-          type="submit"
-          color="green"
-          content="Submit"
-        />
+        <Button floated="right" type="submit" color="green" content="Submit" />
         <Button
           onClick={() => setEditMode(false)}
           floated="right"
