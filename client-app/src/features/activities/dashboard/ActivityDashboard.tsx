@@ -9,6 +9,7 @@ interface IProps {
   activities: IActivity[];
   activity: IActivity | null;
   createActivity: (activity: IActivity) => void;
+  deleteActivity: (id: string) => void;
   editActivity: (activity: IActivity) => void;
   editMode: boolean;
   onSelectActivity: (id: string) => void;
@@ -19,6 +20,7 @@ const ActivityDashboard: React.FC<IProps> = ({
   activities,
   activity,
   createActivity,
+  deleteActivity,
   editActivity,
   editMode,
   onSelectActivity: SelectActivity,
@@ -30,6 +32,7 @@ const ActivityDashboard: React.FC<IProps> = ({
       <Grid.Column width={10}>
         <ActivityList
           activities={activities}
+          deleteActivity={deleteActivity}
           SelectActivity={SelectActivity}
         ></ActivityList>
       </Grid.Column>

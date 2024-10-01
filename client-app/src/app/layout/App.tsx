@@ -12,15 +12,15 @@ const App = () => {
   );
   const [editMode, setEditMode] = useState(false);
 
+  const handleOpenCreateForm = () => {
+    setSelectedActivity(null);
+    setEditMode(true);
+  };
   const handleOnSelectActivity = (id: string) => {
     setSelectedActivity(activities.filter((a) => a.id === id)[0]);
     setEditMode(false);
   };
 
-  const handleOpenCreateForm = () => {
-    setSelectedActivity(null);
-    setEditMode(true);
-  };
   const handleCreateActivity = (activity: IActivity) => {
     setActivities([...activities, activity]);
     setSelectedActivity(activity);
@@ -34,6 +34,10 @@ const App = () => {
     ]);
     setSelectedActivity(activity);
     setEditMode(false);
+  };
+
+  const handleDeleteActivity = (id: string) => {
+    setActivities([...activities.filter((a) => a.id !== id)]);
   };
 
   useEffect(() => {
@@ -57,6 +61,7 @@ const App = () => {
           activities={activities}
           activity={selectedActivity}
           createActivity={handleCreateActivity}
+          deleteActivity={handleDeleteActivity}
           editActivity={handleEditActivity}
           editMode={editMode}
           onSelectActivity={handleOnSelectActivity}
