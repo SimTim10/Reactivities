@@ -14,25 +14,52 @@ const App = () => {
 
   const handleOnSelectActivity = (id: string) => {
     setSelectedActivity(activities.filter((a) => a.id === id)[0]);
+    setEditMode(false);
+  };
+
+  const handleOpenCreateForm = () => {
+    setSelectedActivity(null);
+    setEditMode(true);
+  };
+  const handleCreateActivity = (activity: IActivity) => {
+    setActivities([...activities, activity]);
+    setSelectedActivity(activity);
+    setEditMode(false);
+  };
+
+  const handleEditActivity = (activity: IActivity) => {
+    setActivities([
+      ...activities.filter((a) => a.id !== activity.id),
+      activity,
+    ]);
+    setSelectedActivity(activity);
+    setEditMode(false);
   };
 
   useEffect(() => {
     axios
       .get<IActivity[]>("http://localhost:5283/api/activities")
       .then((response) => {
-        setActivities(response.data);
+        let activities: IActivity[] = [];
+        response.data.forEach((a) => {
+          a.date = a.date.split(".")[0];
+          activities.push(a);
+        });
+        setActivities(activities);
       });
   }, []);
 
   return (
     <Fragment>
-      <NavBar setEditMode={setEditMode} />
+      <NavBar openCreateForm={handleOpenCreateForm} />
       <Container style={{ marginTop: "11em" }}>
         <ActivityDashboard
           activities={activities}
-          onSelectActivity={handleOnSelectActivity}
           activity={selectedActivity}
+          createActivity={handleCreateActivity}
+          editActivity={handleEditActivity}
           editMode={editMode}
+          onSelectActivity={handleOnSelectActivity}
           setEditMode={setEditMode}
           setSelectedActivity={setSelectedActivity}
         ></ActivityDashboard>

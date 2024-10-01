@@ -2,9 +2,9 @@ import React from "react";
 import { Button, Container, Menu, MenuItem } from "semantic-ui-react";
 
 interface IProps {
-  setEditMode: (editMode: boolean) => void;
+  openCreateForm: () => void;
 }
-const NavBar: React.FC<IProps> = ({ setEditMode }) => {
+const NavBar: React.FC<IProps> = ({ openCreateForm }) => {
   return (
     <Menu fixed="top" inverted>
       <Container>
@@ -19,7 +19,7 @@ const NavBar: React.FC<IProps> = ({ setEditMode }) => {
         <MenuItem name="Activities" />
         <MenuItem>
           <Button
-            onClick={() => setEditMode(true)}
+            onClick={() => openCreateForm()}
             positive
             content="Create Activity"
           />
